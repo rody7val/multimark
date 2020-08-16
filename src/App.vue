@@ -5,8 +5,17 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
-  name: 'App'
+  name: 'App',
+
+  mounted() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user && user.isAnonymous) {
+        this.$store.commit('auth', user.uid)
+      }
+    })
+  }
 }
 </script>
 

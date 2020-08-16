@@ -1,6 +1,7 @@
 <template>
     <div>
       <q-carousel
+        style="height: 200px;"
         v-model="slide"
         :autoplay="autoplay"
         controlType="regular"
@@ -36,7 +37,4 @@ export default {
 </script>
 
 <style>
-	.carousel i{
-		color: #fff!important
-	}
 </style>

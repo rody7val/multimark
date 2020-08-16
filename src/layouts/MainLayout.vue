@@ -1,24 +1,27 @@
 <template>
   <q-layout view="hHh LpR fFf">
     <!-- menu -->
-    <q-header elevated class="bg-primary text-white" height-hint="98">
+    <q-header elevated class="bg-dark text-white" height-hint="98">
       <q-toolbar>
         <q-btn
           @click="leftDrawerOpen = !leftDrawerOpen"
           icon="menu"
+          color="primary"
           round
           dense
           push
-          flat
         />
         <q-toolbar-title>
-          Multimark
+          {{$store.state.title}}
         </q-toolbar-title>
 
+        <!-- acceder -->
         <q-btn-dropdown
+          icon="account_circle"
+          v-if="!$store.state.auth"
           class="q-px-sm"
           label="ACCEDER"
-          color="dark"
+          color="primary"
           dense
         >
           <q-list>
@@ -41,6 +44,53 @@
               <q-item-section>
                 <q-item-label>Entrar</q-item-label>
                 <q-item-label caption>Acceder con mi clave</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
+
+        <!-- admin panel -->
+        <q-btn-dropdown
+          v-else
+          class="q-px-sm"
+          color="primary"
+          dense
+        >
+          <template v-slot:label>
+            <q-avatar size="md">
+              <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+            </q-avatar>
+          </template>
+
+          <q-list>
+            <q-item clickable v-close-popup @click="onItemClick('/dash')">
+              <q-item-section avatar>
+                <q-avatar icon="dashboard" color="primary" text-color="white" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>Dashboard</q-item-label>
+                <q-item-label caption>Panel de control</q-item-label>
+              </q-item-section>
+            </q-item>
+
+            <q-item clickable v-close-popup @click="onItemClick('/my')">
+              <q-item-section avatar>
+                <q-avatar icon="person" color="primary" text-color="white" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>Usuario</q-item-label>
+                <q-item-label caption>Mi Perfil</q-item-label>
+              </q-item-section>
+            </q-item>
+
+            <q-item clickable v-close-popup @click="logout">
+              <q-item-section avatar>
+                <q-avatar icon="close" color="primary" text-color="white" />
+              </q-item-section>
+
+              <q-item-section>
+                <q-item-label>Salir</q-item-label>
+                <q-item-label caption>Cerrar sesión</q-item-label>
               </q-item-section>
             </q-item>
           </q-list>
@@ -97,6 +147,7 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink.vue'
+import firebase from 'firebase'
 
 const linksData = [
   {
@@ -104,12 +155,6 @@ const linksData = [
     caption: 'Nuestra empresa',
     icon: 'home',
     link: '/'
-  },
-  {
-    title: 'REGISTRARSE',
-    caption: 'Solicitar usuario',
-    icon: 'person_add',
-    link: '/signup'
   },
   {
     title: 'CONTACTO',
@@ -134,6 +179,17 @@ export default {
   methods: {
     onItemClick (link) {
       this.$router.push(link)
+    },
+    logout() {
+      firebase.auth().signOut().then(() => {
+        // logout
+        this.$store.commit('logout')
+        return window.location.href = '/'
+        //return this.$router.push('/')
+      }).catch(error => {
+        alert(error)
+      });
+
     }
   },
 }
@@ -146,5 +202,6 @@ export default {
 .logo{
   -webkit-box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+  width: 100%;
 }
 </style>

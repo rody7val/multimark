@@ -1,7 +1,9 @@
 <template>
-  <div class="text-center q-pa-md flex flex-center">
-    <h3>Contacto</h3>
-  </div>
+	<div class="q-px-xs row">
+		<div class="col q-pa-sm text-center" style="min-width: 300px">
+    		<h3 class="q-mt-md q-mb-xs text-primary">Contacto</h3>
+    	</div>
+    </div>
 </template>
 
 <script>
