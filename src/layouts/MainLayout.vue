@@ -12,7 +12,7 @@
           push
         />
         <q-toolbar-title>
-          {{$store.state.title}}
+          <b>{{$store.state.title}}</b>
         </q-toolbar-title>
 
         <!-- acceder -->
@@ -49,7 +49,7 @@
           </q-list>
         </q-btn-dropdown>
 
-        <!-- admin panel -->
+        <!-- auth panel -->
         <q-btn-dropdown
           v-else
           class="q-px-sm"
@@ -97,12 +97,15 @@
         </q-btn-dropdown>
       </q-toolbar>
 
-      <!-- admin -->
-      <!-- <q-tabs align="left">
-        <q-route-tab to="/page1" label="Distribuidora" />
-        <q-route-tab to="/page2" icon="person_add" />
-        <q-route-tab to="/page3" label="Page Three" />
-      </q-tabs> -->
+      <!-- admin panel -->
+      <q-tabs
+        v-if="$store.state.auth"
+        v-model="tabs"
+        align="left">
+        <q-route-tab to="/items" label="Productos" name="productos" />
+        <q-route-tab to="/orders" label="Pedidos" name="pedidos" />
+        <q-route-tab to="/users" label="Usuarios" name="usuarios" />
+      </q-tabs>
     </q-header>
 
     <!-- sidebar -->
@@ -171,6 +174,7 @@ export default {
   
   data () {
     return {
+      tabs: "productos",
       leftDrawerOpen: false,
       essentialLinks: linksData
     }
@@ -185,7 +189,7 @@ export default {
         // logout
         this.$store.commit('logout')
         return window.location.href = '/'
-        //return this.$router.push('/')
+        // return this.$router.push('/')
       }).catch(error => {
         alert(error)
       });

@@ -1,7 +1,7 @@
 <template>
     <div>
       <q-carousel
-        style="height: 200px;"
+        style="height: 300px;"
         v-model="slide"
         :autoplay="autoplay"
         controlType="regular"
@@ -16,10 +16,9 @@
         @mouseenter="autoplay = false"
         @mouseleave="autoplay = true"
       >
-        <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" />
-        <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
-        <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
-        <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/quasar.jpg" />
+        <q-carousel-slide :name="1" img-src="~assets/image-1.jpeg" />
+        <q-carousel-slide :name="2" img-src="~assets/image-2.jpeg" />
+        <q-carousel-slide :name="3" img-src="~assets/image-3.jpeg" />
       </q-carousel>
     </div>
 </template>

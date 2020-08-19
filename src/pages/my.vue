@@ -5,7 +5,7 @@
   		<q-card class="my-card" flat bordered>
         <q-item>
           <q-item-section avatar>
-            <q-avatar>
+            <q-avatar size="xl">
               <img src="https://cdn.quasar.dev/img/boy-avatar.png">
             </q-avatar>
           </q-item-section>
@@ -30,7 +30,11 @@ export default {
   name: 'Error404',
   computed: {
     my() {
-      return this.$store.state.users.data[Object.keys(this.$store.state.users.data)[0]]
+      if (Object.keys(this.$store.state.users.data).length) {
+        return this.$store.state.users.data[
+          Object.keys(this.$store.state.users.data)[0]
+        ]
+      }
     }
   }
 }

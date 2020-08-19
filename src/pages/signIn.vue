@@ -21,12 +21,13 @@
 		    <q-btn
           v-if="!load"
           type="submit"
-		      class="q-py-xs q-my-md left"
+		      class="q-py-xs q-my-lg"
 		      color="primary"
 		      label="Entrar"
 		    />
         <q-spinner
           v-else
+          class="q-my-lg"
           color="primary"
           size="3em"
         />
@@ -107,6 +108,7 @@ export default {
       }
       return false
     },
+
   },
 }
 </script>

@@ -24,7 +24,7 @@
           type="text"
         />
         <q-btn
-          class="q-py-xs q-my-md left"
+          class="q-py-xs q-my-lg"
           label="Solicitar"
           color="primary"
           type="submit"
