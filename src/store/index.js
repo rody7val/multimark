@@ -5,9 +5,10 @@ Vue.use(Vuex)
 
 import { Firebase, initFirebase } from '../config/firebase.js'
 import users from '../modules/users.js'
+import items from '../modules/items.js'
 
 const easyFirestore = VuexEasyFirestore(
-  [users],
+  [users, items],
   {logging: true, FirebaseDependency: Firebase}
 )
 

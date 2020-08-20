@@ -17,7 +17,7 @@ function initFirebase () {
           // The current browser does not support all of
           // the features required to enable persistence
         }
-      })
+      }).finally() 
   })
 }
 

@@ -11,12 +11,12 @@
           </q-item-section>
 
           <q-item-section>
-            <q-item-label>{{ my.name }}</q-item-label>
+            <q-item-label>{{ my ? my.name : null }}</q-item-label>
             <q-item-label caption>
-              {{ my.tel }}
+              {{ my ? my.tel : null }}
             </q-item-label>
             <q-item-label>
-              {{ my.dir }}
+              {{ my ? my.dir : null }}
             </q-item-label>
           </q-item-section>
         </q-item>
